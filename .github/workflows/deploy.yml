@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent .
+          docker build -t us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent ./sample-api/
           docker push us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent
 
       - name: Deploy to Cloud Run
