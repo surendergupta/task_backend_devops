@@ -1,0 +1,34 @@
+name: Deploy to Cloud Run
+on:
+  push:
+    branches: [master]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build Docker image
+        run: |
+          docker build -t us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent ./sample-api/
+          docker push us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy fastapi-agent \
+            --image=us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent \
+            --platform=managed \
+            --region=us-central1 \
+            --allow-unauthenticated \
+            --port=8000 \
+            --set-env-vars=MONGO_URI="mongodb+srv://guptasurender1990:kWnkCmbbup38jmmt@samplefastapi.zzrkght.mongodb.net/"
