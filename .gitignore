@@ -1,0 +1,4 @@
+n8n/.env
+sample-api/__pycache__
+sample-api/fastapi-env
+sample-api/.env

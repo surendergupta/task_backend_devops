@@ -1,0 +1,115 @@
+[{
+  "_id": {
+    "$oid": "67f28fcc1992c51ea689f1e6"
+  },
+  "title": "Unintended Content Moderation",
+  "description": "AI mistakenly removed non-violating posts from a social media platform.",
+  "severity": "Low",
+  "reported_at": "2025-04-06T12:15:00Z"
+},
+{
+  "_id": {
+    "$oid": "67f2bcc1a6a1e44b5b4cdf50"
+  },
+  "title": "00",
+  "description": "sdsdsadsa",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-06T17:41:21.646Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f2bd8d5ecbfb10eb792559"
+  },
+  "title": "00",
+  "description": "sdsdsadsa",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-06T17:44:45.664Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f2bd905ecbfb10eb79255b"
+  },
+  "title": "00",
+  "description": "sdsdsadsa",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-06T17:44:48.492Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f2bdcdf17a13be127c2331"
+  },
+  "title": "System Crash",
+  "description": "The system crashed unexpectedly due to memory leak.",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-06T17:45:49.633Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f2be2cf17a13be127c2333"
+  },
+  "title": "A",
+  "description": "The system crashed unexpectedly due to memory leak.",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-06T17:47:24.008Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f2ce5f80c47f6c3071547f"
+  },
+  "title": "System Crash",
+  "description": "The AI system crashed due to memory leak.",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-06T18:56:31.124Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f3ae0ef045cff7b05f1272"
+  },
+  "title": "Sample Data",
+  "description": "The system crashed unexpectedly due to memory leak.",
+  "severity": "High",
+  "reported_at": {
+    "$date": "2025-04-07T10:50:54.214Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f6ab9dac37fc2bea70f99c"
+  },
+  "title": "Test Title",
+  "description": "Test Title Desc",
+  "severity": "Low",
+  "reported_at": {
+    "$date": "2025-04-09T17:14:16.292Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67f6affefa387f6ec83766ac"
+  },
+  "title": "string",
+  "description": "string",
+  "severity": "Low",
+  "reported_at": {
+    "$date": "2025-04-09T17:34:01.736Z"
+  }
+}]
