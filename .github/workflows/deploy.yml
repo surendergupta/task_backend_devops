@@ -18,9 +18,6 @@ jobs:
       - name: Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      - name: Configure IAM Policy
-        run: gcloud projects add-iam-policy-binding syllabustracker-456512 --member="serviceAccount:github-deployer@syllabustracker-456512.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
-        
       - name: Build Docker image
         run: |
           docker build -t us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent ./sample-api/
