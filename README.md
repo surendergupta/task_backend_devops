@@ -200,8 +200,9 @@ Secured SSH: Yes (SSH Key + No root login)
 - Create Folder `Sample-api`
 - Create `main.py` file
 ```python
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from bson import ObjectId
 from datetime import datetime
@@ -209,6 +210,15 @@ import os
 import uvicorn
 
 app = FastAPI()
+
+# Allow CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # MongoDB Connection
 MONGO_URI = os.getenv("MONGO_URI")
@@ -489,10 +499,13 @@ jobs:
 
       - name: Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
-
+      
       - name: Build Docker image
         run: |
-          docker build -t us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent .
+          docker build -t us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent ./sample-api
+
+      - name: Push to Artifact Registry
+        run: |
           docker push us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent
 
       - name: Deploy to Cloud Run
@@ -505,3 +518,81 @@ jobs:
             --port=8000 \
             --set-env-vars=MONGO_URI="mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_NAME>.zzrkght.mongodb.net/"
 ```
+### Github Action Output for Submission
+```txt
+Deploying container to Cloud Run service [fastapi-agent] in project [syllabustracker-456512] region [us-central1]
+Deploying...
+Setting IAM Policy.............done
+Creating Revision.................................................................................................................................done
+Routing traffic.....done
+Done.
+Service [fastapi-agent] revision [fastapi-agent-00003-gbt] has been deployed and is serving 100 percent of traffic.
+Service URL: https://fastapi-agent-154172965587.us-central1.run.app
+```
+
+### If Find Issue on IAM Permission or Repositry not found
+- Create IAM Service Account and add Policy on it.
+```bash
+gcloud iam service-accounts create github-deployer --description="Service account for GitHub Actions deployments" --display-name="GitHub Deployer"
+gcloud projects add-iam-policy-binding syllabustracker-456512 --member="serviceAccount:github-deployer@syllabustracker-456512.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
+gcloud projects add-iam-policy-binding syllabustracker-456512  --member="serviceAccount:github-deployer@syllabustracker-456512.iam.gserviceaccount.com" --role="roles/run.admin"
+gcloud projects add-iam-policy-binding syllabustracker-456512 --member="serviceAccount:github-deployer@syllabustracker-456512.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
+```
+- Create a Key file to deploy
+```bash
+gcloud iam service-accounts keys create key.json --iam-account=github-deployer@syllabustracker-456512.iam.gserviceaccount.com
+```
+- Github Secret add this key.json file data
+- Create a artifact repository
+```bash
+gcloud artifacts repositories create fastapi-repo --repository-format=docker --location=us-central1
+```
+
+### Final Output for Submission
+```yaml
+URL: https://fastapi-agent-154172965587.us-central1.run.app
+DOCS: https://fastapi-agent-154172965587.us-central1.run.app/docs
+REDOC: https://fastapi-agent-154172965587.us-central1.run.app/redoc
+```
+
+### Screenshot Both Task 1
+
+![alt text](<screenshots/Screenshot 2025-04-16 141224.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142128.png>)
+![alt text](<screenshots/Screenshot 2025-04-16 142141.png>)
+![alt text](<screenshots/Screenshot 2025-04-16 142240.png>)
+![alt text](<screenshots/Screenshot 2025-04-16 143139.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 143407.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 144450.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 144940.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 150015.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 150549.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 160039.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 163319.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 163421.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 163752.png>) 
+
+### Screenshot Both Task 2
+
+![alt text](<screenshots/Screenshot 2025-04-16 171748.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 171800.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 171812.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 172418.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 172724.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 172802.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 173137.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 180150.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 180207.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 181206.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 181734.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 181751.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 181805.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 185440.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 235915.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 235934.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 235951.png>) 
+![alt text](<screenshots/Screenshot 2025-04-17 000025.png>) 
+![alt text](<screenshots/Screenshot 2025-04-17 000100.png>) 
+![alt text](<screenshots/Screenshot 2025-04-17 000213.png>) 
+![alt text](<screenshots/Screenshot 2025-04-17 000232.png>)
