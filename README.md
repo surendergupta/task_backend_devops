@@ -23,14 +23,6 @@
     - Authentication: SSH KEY
 - Click Create
 
-![alt text](<screenshots/Screenshot 2025-04-16 141224.png>)
-
-![alt text](<screenshots/Screenshot 2025-04-16 142128.png>)
-
-![alt text](<screenshots/Screenshot 2025-04-16 142141.png>)
-
-![alt text](<screenshots/Screenshot 2025-04-16 142240.png>)
-
 ![alt text](<screenshots/Screenshot 2025-04-16 143139.png>) 
 
 ### SSH into VM (After VM Provision Access)
@@ -116,12 +108,8 @@ docker ps
 ![alt text](<screenshots/Screenshot 2025-04-16 144940.png>) 
 
 ### Access URL
-- Open http://<external-ip>:5678 in your browser. `http://35.225.123.1:5678`
+- Open http://external-ip:5678 in your browser. `http://35.225.123.1:5678`
 - Login using your configured basic auth credentials.
-
-![alt text](<screenshots/Screenshot 2025-04-16 150015.png>)
-
-![alt text](<screenshots/Screenshot 2025-04-16 150549.png>)
 
 ![alt text](<screenshots/Screenshot 2025-04-16 160039.png>) 
 
@@ -208,7 +196,6 @@ chmod +x n8n-deploy-gcp.sh
 ./n8n-deploy-gcp.sh
 
 ```
-![alt text](<screenshots/Screenshot 2025-04-16 163319.png>) 
 
 ![alt text](<screenshots/Screenshot 2025-04-16 163421.png>) 
 
@@ -408,18 +395,12 @@ DOCS: http://localhost:8000/docs
 REDOC: http://localhost:8000/redoc
 ```
 
-![alt text](<screenshots/Screenshot 2025-04-16 171748.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 171800.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 171812.png>) 
 ![alt text](<screenshots/Screenshot 2025-04-16 172418.png>) 
 
 ### Push to Google Artifacts Registry
 ```
 docker tag fastapi-agent us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent
 ```
-![alt text](<screenshots/Screenshot 2025-04-16 172724.png>) 
-
-![alt text](<screenshots/Screenshot 2025-04-16 172802.png>) 
 
 ![alt text](<screenshots/Screenshot 2025-04-16 173137.png>) 
 
@@ -519,12 +500,6 @@ Service URL: https://fastapi-agent-154172965587.us-central1.run.app
 
 ![alt text](<screenshots/Screenshot 2025-04-16 181734.png>)
 
-![alt text](<screenshots/Screenshot 2025-04-16 181751.png>) 
-
-![alt text](<screenshots/Screenshot 2025-04-16 181805.png>) 
-
-![alt text](<screenshots/Screenshot 2025-04-16 185440.png>) 
-
 
 ### Clean Up
 ```bash
@@ -593,8 +568,6 @@ Service URL: https://fastapi-agent-154172965587.us-central1.run.app
 
 ![alt text](<screenshots/Screenshot 2025-04-16 235915.png>) 
 
-![alt text](<screenshots/Screenshot 2025-04-17 000213.png>) 
-
 ### If Find Issue on IAM Permission or Repositry not found
 - Create IAM Service Account and add Policy on it.
 ```bash
@@ -622,10 +595,55 @@ DOCS: https://fastapi-agent-154172965587.us-central1.run.app/docs
 REDOC: https://fastapi-agent-154172965587.us-central1.run.app/redoc
 ```
 
+
+![alt text](<screenshots/Screenshot 2025-04-17 000025.png>) 
+
+---
+
+## ScreenShot of Task 1
+
+---
+![alt text](<screenshots/Screenshot 2025-04-16 141224.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142128.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142141.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142240.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 150015.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 150549.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 163319.png>) 
+
+---
+
+## ScreenShot of Task 2
+
+---
+
+
+![alt text](<screenshots/Screenshot 2025-04-16 171748.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 171800.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 171812.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 172724.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 172802.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 181751.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 181805.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 185440.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-17 000213.png>) 
+
 ![alt text](<screenshots/Screenshot 2025-04-16 235934.png>) 
 
 ![alt text](<screenshots/Screenshot 2025-04-16 235951.png>) 
-
-![alt text](<screenshots/Screenshot 2025-04-17 000025.png>) 
 
 ---
