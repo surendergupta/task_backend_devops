@@ -23,6 +23,16 @@
     - Authentication: SSH KEY
 - Click Create
 
+![alt text](<screenshots/Screenshot 2025-04-16 141224.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142128.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142141.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 142240.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 143139.png>) 
+
 ### SSH into VM (After VM Provision Access)
 - Wait till GCP VM IN Ready State
 - Goto top right click on Cloud Shell Terminal
@@ -49,6 +59,8 @@ docker-compose --version
 
 ```
 
+![alt text](<screenshots/Screenshot 2025-04-16 143407.png>) 
+
 ### Setup n8n
 - Create a directory for n8n:
 ```
@@ -65,6 +77,9 @@ N8N_PORT=5678
 N8N_PROTOCOL=http
 N8N_SECURE_COOKIE=false
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-16 144450.png>)
+
 - Create a `docker-compose.yml` file: `vi docker-compose.yml`
 - Copy below content into `docker-compose.yml` file
 ```
@@ -92,14 +107,23 @@ volumes:
 ```
 docker-compose up -d
 ```
+
 - View container running in Docker use command
 ```
 docker ps
 ```
 
+![alt text](<screenshots/Screenshot 2025-04-16 144940.png>) 
+
 ### Access URL
 - Open http://<external-ip>:5678 in your browser. `http://35.225.123.1:5678`
 - Login using your configured basic auth credentials.
+
+![alt text](<screenshots/Screenshot 2025-04-16 150015.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 150549.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 160039.png>) 
 
 ### Secure the VM
 - **Firewall:** Ensure only ports 22 (SSH) and 5678 (n8n) are open.
@@ -184,6 +208,9 @@ chmod +x n8n-deploy-gcp.sh
 ./n8n-deploy-gcp.sh
 
 ```
+![alt text](<screenshots/Screenshot 2025-04-16 163319.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 163421.png>) 
 
 ### Final Output for Submission
 ```yaml
@@ -193,6 +220,10 @@ Password: admin@123
 Persistent Volume: Docker volume (n8n_data)
 Secured SSH: Yes (SSH Key + No root login)
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-16 163752.png>) 
+
+---
 
 ## 🌐 Task 2: Containerize & Deploy a Sample FastAPI Agent Backend
 
@@ -315,6 +346,7 @@ async def delete_incident(id: str):
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
+
 - Create `requirements.txt` file
 ```txt
 fastapi
@@ -376,10 +408,20 @@ DOCS: http://localhost:8000/docs
 REDOC: http://localhost:8000/redoc
 ```
 
+![alt text](<screenshots/Screenshot 2025-04-16 171748.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 171800.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 171812.png>) 
+![alt text](<screenshots/Screenshot 2025-04-16 172418.png>) 
+
 ### Push to Google Artifacts Registry
 ```
 docker tag fastapi-agent us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent
 ```
+![alt text](<screenshots/Screenshot 2025-04-16 172724.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 172802.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 173137.png>) 
 
 ### Install Google cloud CLI
 - Install Cli form url below. Select your Operating System and Architecture
@@ -421,6 +463,9 @@ Quota project "syllabustracker-456512" was added to ADC which can be used by Goo
 ```bash
 docker push us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-16 180150.png>)
+
 - Output in console 
 ```
 Using default tag: latest
@@ -436,6 +481,8 @@ f10bf87e184c: Pushed
 8a628cdd7ccc: Pushed
 latest: digest: sha256:11b4cdf3b75ed77f833b51312c2dffd6d18e227ee9da6bebfc134515722d78e3 size: 856
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-16 180207.png>) 
 
 ### Deploy to Cloud Run
 - Update IAM Policy
@@ -455,6 +502,8 @@ gcloud run deploy fastapi-agent --image=us-central1-docker.pkg.dev/syllabustrack
 gcloud run deploy fastapi-agent --image=us-central1-docker.pkg.dev/syllabustracker-456512/fastapi-repo/fastapi-agent --platform=managed --region=us-central1 --allow-unauthenticated --port=8000 --set-env-vars=MONGO_URI="mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_NAME>.zzrkght.mongodb.net/"
 ```
 
+![alt text](<screenshots/Screenshot 2025-04-16 181206.png>) 
+
 ### Output for Submission
 
 ```txt
@@ -467,6 +516,15 @@ Done.
 Service [fastapi-agent] revision [fastapi-agent-00002-8v8] has been deployed and is serving 100 percent of traffic.
 Service URL: https://fastapi-agent-154172965587.us-central1.run.app
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-16 181734.png>)
+
+![alt text](<screenshots/Screenshot 2025-04-16 181751.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 181805.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-16 185440.png>) 
+
 
 ### Clean Up
 ```bash
@@ -518,6 +576,9 @@ jobs:
             --port=8000 \
             --set-env-vars=MONGO_URI="mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_NAME>.zzrkght.mongodb.net/"
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-17 000232.png>)
+
 ### Github Action Output for Submission
 ```txt
 Deploying container to Cloud Run service [fastapi-agent] in project [syllabustracker-456512] region [us-central1]
@@ -529,6 +590,10 @@ Done.
 Service [fastapi-agent] revision [fastapi-agent-00003-gbt] has been deployed and is serving 100 percent of traffic.
 Service URL: https://fastapi-agent-154172965587.us-central1.run.app
 ```
+
+![alt text](<screenshots/Screenshot 2025-04-16 235915.png>) 
+
+![alt text](<screenshots/Screenshot 2025-04-17 000213.png>) 
 
 ### If Find Issue on IAM Permission or Repositry not found
 - Create IAM Service Account and add Policy on it.
@@ -548,6 +613,8 @@ gcloud iam service-accounts keys create key.json --iam-account=github-deployer@s
 gcloud artifacts repositories create fastapi-repo --repository-format=docker --location=us-central1
 ```
 
+![alt text](<screenshots/Screenshot 2025-04-17 000100.png>) 
+
 ### Final Output for Submission
 ```yaml
 URL: https://fastapi-agent-154172965587.us-central1.run.app
@@ -555,44 +622,10 @@ DOCS: https://fastapi-agent-154172965587.us-central1.run.app/docs
 REDOC: https://fastapi-agent-154172965587.us-central1.run.app/redoc
 ```
 
-### Screenshot Both Task 1
-
-![alt text](<screenshots/Screenshot 2025-04-16 141224.png>)
-
-![alt text](<screenshots/Screenshot 2025-04-16 142128.png>)
-![alt text](<screenshots/Screenshot 2025-04-16 142141.png>)
-![alt text](<screenshots/Screenshot 2025-04-16 142240.png>)
-![alt text](<screenshots/Screenshot 2025-04-16 143139.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 143407.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 144450.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 144940.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 150015.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 150549.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 160039.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 163319.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 163421.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 163752.png>) 
-
-### Screenshot Both Task 2
-
-![alt text](<screenshots/Screenshot 2025-04-16 171748.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 171800.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 171812.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 172418.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 172724.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 172802.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 173137.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 180150.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 180207.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 181206.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 181734.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 181751.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 181805.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 185440.png>) 
-![alt text](<screenshots/Screenshot 2025-04-16 235915.png>) 
 ![alt text](<screenshots/Screenshot 2025-04-16 235934.png>) 
+
 ![alt text](<screenshots/Screenshot 2025-04-16 235951.png>) 
+
 ![alt text](<screenshots/Screenshot 2025-04-17 000025.png>) 
-![alt text](<screenshots/Screenshot 2025-04-17 000100.png>) 
-![alt text](<screenshots/Screenshot 2025-04-17 000213.png>) 
-![alt text](<screenshots/Screenshot 2025-04-17 000232.png>)
+
+---
